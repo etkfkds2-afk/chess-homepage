@@ -119,6 +119,7 @@ footer a{color:var(--muted);text-decoration:none}
 
 <div class="topbar">
   <div class="topbar-in">
+    <!-- TODO: 사단법인 대한체스연맹 실제 로고 파일 받으면 아래 텍스트 로고를 <img>로 교체 -->
     <a class="kcf-logo" href="/">♞ 대한<span>체스</span>연맹</a>
     <nav class="topnav">
       <a href="/#tournaments">대회 일정</a>
@@ -236,8 +237,17 @@ const MONTHS=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV",
 const LABEL={open:"접수중",soon:"접수예정",closed:"마감"};
 let DATA=[],curFilter="all",curView="card";
 
+// TODO: 예시 데이터. 대회마다 division(부문) 값이 매번 달라서 고정 카테고리 목록을 만들지 않고
+// 자유 텍스트로 둠. /api/tournaments 백엔드(구글 캘린더 연동 예정) 붙이면 이 배열은 삭제.
+const SAMPLE_DATA=[
+  {id:"s1",title:"제1회 전국 오픈 체스대회",date:"2026-09-12",place:"서울 올림픽공원 실내체육관",division:"오픈부",fee:"5만원",status:"open",form:"#"},
+  {id:"s2",title:"전국 초·중등부 체스대회",date:"2026-09-27",place:"부산 벡스코",division:"초등부·중등부",fee:"3만원",status:"open",form:"#"},
+  {id:"s3",title:"제5회 여성부 체스대회",date:"2026-10-18",place:"대전 컨벤션센터",division:"여성부",fee:"3만원",status:"soon",form:"#"},
+  {id:"s4",title:"시니어 체스 페스티벌",date:"2026-08-02",place:"대구 실내체육관",division:"시니어부",fee:"4만원",status:"closed",form:"#"}
+];
+
 async function load(){
-  try{const r=await fetch("/api/tournaments",{cache:"no-store"});DATA=await r.json()}catch{DATA=[]}
+  try{const r=await fetch("/api/tournaments",{cache:"no-store"});DATA=await r.json()}catch{DATA=SAMPLE_DATA}
   document.getElementById("loading").style.display="none";
   render();
 }
