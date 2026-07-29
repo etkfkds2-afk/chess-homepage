@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>대한체스연맹</title>
+<title>랭킹 · 대한체스연맹</title>
 <style>
 :root{--bg:#f7f8fa;--card:#fff;--text:#1f2937;--muted:#6b7280;--line:#e5e7eb;--brand:#111827;--accent:#2563eb}
 *{box-sizing:border-box}
@@ -15,18 +15,20 @@ header{background:var(--brand);color:#fff}
 .menu{display:flex;gap:26px;list-style:none;margin:0;padding:0}
 .menu a{color:#d1d5db;text-decoration:none;font-size:14px;font-weight:600}
 .menu a:hover,.menu a.active{color:#fff}
-.hero{width:min(1080px,calc(100% - 32px));margin:0 auto;padding:64px 0 40px;text-align:center}
-.hero h1{font-size:32px;margin:0 0 12px}
-.hero p{color:var(--muted);font-size:15px;margin:0}
-.grid{width:min(1080px,calc(100% - 32px));margin:0 auto 64px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;text-decoration:none;color:var(--text)}
-.card h2{font-size:16px;margin:0 0 6px}
-.card p{color:var(--muted);font-size:13px;margin:0}
+main{width:min(1080px,calc(100% - 32px));margin:0 auto;padding:40px 0 64px}
+h1{font-size:24px;margin:0 0 18px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tab{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:7px 14px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer}
+.tab.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+th,td{padding:12px 14px;text-align:left;font-size:14px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:700;font-size:12px;background:#f8fafc}
+.empty{color:var(--muted);font-size:14px;padding:40px 0;text-align:center}
 footer{border-top:1px solid var(--line);padding:24px 0;text-align:center}
 .footlinks{display:flex;gap:16px;justify-content:center;margin-bottom:8px}
 .footlinks a{color:var(--muted);font-size:12px;text-decoration:none}
 .copy{color:#9ca3af;font-size:12px}
-@media(max-width:720px){.grid{grid-template-columns:1fr}.menu{display:none}}
+@media(max-width:720px){.menu{display:none}}
 </style>
 </head>
 <body>
@@ -35,24 +37,32 @@ footer{border-top:1px solid var(--line);padding:24px 0;text-align:center}
 <a class="logo" href="/">♞ 대한<span>체스</span>연맹</a>
 <ul class="menu">
 <li><a href="/tournaments.html">대회 일정</a></li>
-<li><a href="/rankings.html">랭킹</a></li>
+<li><a class="active" href="/rankings.html">랭킹</a></li>
 <li><a href="/news.html">뉴스</a></li>
 <li><a href="/referees.html">심판·지도사</a></li>
 <li><a href="/about.html">소개</a></li>
 </ul>
 </div>
 </header>
-<section class="hero">
-<h1>대한체스연맹</h1>
-<p>대회 일정, 공식 랭킹, 연맹 소식을 한곳에서 확인하세요.</p>
-</section>
-<section class="grid">
-<a class="card" href="/tournaments.html"><h2>대회 일정</h2><p>다가오는 대회와 참가 신청 안내</p></a>
-<a class="card" href="/rankings.html"><h2>랭킹</h2><p>FIDE 공식 레이팅 국내 순위</p></a>
-<a class="card" href="/news.html"><h2>뉴스</h2><p>대회 소식과 결과</p></a>
-<a class="card" href="/referees.html"><h2>심판·지도사</h2><p>공인 심판 및 지도사 명단</p></a>
-<a class="card" href="/about.html"><h2>소개</h2><p>연맹 소개 및 연혁</p></a>
-</section>
+<main>
+<h1>랭킹</h1>
+<div class="tabs">
+<div class="tab active">Standard</div>
+<div class="tab">Rapid</div>
+<div class="tab">Blitz</div>
+<div class="tab">U18</div>
+<div class="tab">U14</div>
+<div class="tab">U10</div>
+<div class="tab">여성</div>
+<div class="tab">마스터</div>
+</div>
+<table>
+<thead><tr><th>순위</th><th>이름</th><th>레이팅</th><th>지역</th></tr></thead>
+<tbody id="rankingBody">
+<tr><td colspan="4" class="empty">랭킹 데이터가 아직 없습니다.</td></tr>
+</tbody>
+</table>
+</main>
 <footer>
 <div class="footlinks">
 <a href="/about.html#faq">FAQ</a>
