@@ -14,7 +14,7 @@ jobs:
         run: |
           rm -rf dist
           mkdir dist
-          cp index.html tournaments.html rankings.html news.html referees.html about.html privacy.html login.html dist/
+          cp index.html referees.html about.html faq.html privacy.html login.html dist/
 
       - name: Ensure Cloudflare Pages project
         env:
